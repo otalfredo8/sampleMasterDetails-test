@@ -36,7 +36,7 @@
             emailext (
                 to: "${env.EMAIL_RECIPIENTS}",
                 subject: "✅ Cypress Tests Passed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-               body: """
+                body: """
                 Hello Team,
 
                 Cypress tests passed successfully! 🎉
@@ -44,7 +44,7 @@
                 Job: ${env.JOB_NAME}
                 Build: #${env.BUILD_NUMBER}
                 URL: ${env.BUILD_URL}
-            """
+                """
             )
         }
 
@@ -62,7 +62,7 @@
                 URL: ${env.BUILD_URL}
 
                 Please investigate.
-            """
+                """
             )
         }
     }
