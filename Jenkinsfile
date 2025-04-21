@@ -1,8 +1,8 @@
- pipeline {
+pipeline {
     agent {
         docker {
-            image 'cypress/included:14.3.1' // choose a Cypress version that matches your tests
-            args '-u root -v /var/run/docker.sock:/var/run/docker.sock' // if you need docker inside docker
+            image 'cypress/included:14.3.1'
+            args '-u root'
         }
     }
 
@@ -33,7 +33,7 @@
 
     post {
         success {
-            emailext (
+            emailext(
                 to: "${env.EMAIL_RECIPIENTS}",
                 subject: "✅ Cypress Tests Passed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
@@ -49,7 +49,7 @@
         }
 
         failure {
-            emailext (
+            emailext(
                 to: "${env.EMAIL_RECIPIENTS}",
                 subject: "❌ Cypress Tests Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
@@ -67,4 +67,3 @@
         }
     }
 }
-
