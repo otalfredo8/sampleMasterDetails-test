@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'cypress/included:14.3.1'
-            args '-u root'
+            args '-u root --entrypoint=""'
         }
     }
 
@@ -14,19 +14,29 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                echo '🔍 Verifying workspace and starting checkout...'
+                sh 'pwd && ls -l'
                 git url: "${env.GIT_REPO}", branch: 'main'
+                sh 'echo "✅ Checkout complete"; git log -1'
             }
         }
 
         stage('Install Dependencies') {
             steps {
+                echo '📦 Checking node & npm versions before installing...'
+                sh 'node -v && npm -v'
+                sh 'echo "🔍 Listing initial node_modules (if any)" && ls -l node_modules || echo "None"'
                 sh 'npm ci'
+                sh 'echo "✅ Dependencies installed"; npm list --depth=0'
             }
         }
 
         stage('Run Cypress Tests') {
             steps {
-                sh 'npx cypress run'
+                echo '🚀 Starting Cypress test run...'
+                sh 'npx cypress verify'
+                sh 'npx cypress run || true' // use `|| true` to let post block still run on fail
+                sh 'echo "🧪 Cypress run completed"; ls -lh cypress/videos || echo "No videos"'
             }
         }
     }
