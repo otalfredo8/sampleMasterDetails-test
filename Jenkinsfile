@@ -43,37 +43,37 @@ pipeline {
 
     post {
         success {
-            emailext(
-                to: "${env.EMAIL_RECIPIENTS}",
-                subject: "✅ Cypress Tests Passed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                Hello Team,
+            //emailext(
+            //    to: "${env.EMAIL_RECIPIENTS}",
+            //    subject: "✅ Cypress Tests Passed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            //    body: """
+            //    Hello Team,
 
-                Cypress tests passed successfully! 🎉
+            //    Cypress tests passed successfully! 🎉
 
-                Job: ${env.JOB_NAME}
-                Build: #${env.BUILD_NUMBER}
-                URL: ${env.BUILD_URL}
-                """
-            )
+            //    Job: ${env.JOB_NAME}
+            //    Build: #${env.BUILD_NUMBER}
+            //    URL: ${env.BUILD_URL}
+            //    """
+            //)
         }
 
         failure {
-            emailext(
-                to: "${env.EMAIL_RECIPIENTS}",
-                subject: "❌ Cypress Tests Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                Attention Team,
+            //emailext(
+            //    to: "${env.EMAIL_RECIPIENTS}",
+            //    subject: "❌ Cypress Tests Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            //    body: """
+            //    Attention Team,
 
-                Cypress test run has failed 😞
+            //    Cypress test run has failed 😞
 
-                Job: ${env.JOB_NAME}
-                Build: #${env.BUILD_NUMBER}
-                URL: ${env.BUILD_URL}
+            //    Job: ${env.JOB_NAME}
+            //    Build: #${env.BUILD_NUMBER}
+            //    URL: ${env.BUILD_URL}
 
-                Please investigate.
-                """
-            )
+            //    Please investigate.
+            //    """
+            //)
         }
     }
 }
