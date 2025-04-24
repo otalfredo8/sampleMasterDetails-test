@@ -42,7 +42,7 @@ pipeline {
     }
 
     post {
-        success {
+        //success {
             //emailext(
             //    to: "${env.EMAIL_RECIPIENTS}",
             //    subject: "✅ Cypress Tests Passed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
@@ -56,9 +56,9 @@ pipeline {
             //    URL: ${env.BUILD_URL}
             //    """
             //)
-        }
+        //}
 
-        failure {
+        //failure {
             //emailext(
             //    to: "${env.EMAIL_RECIPIENTS}",
             //    subject: "❌ Cypress Tests Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
@@ -74,6 +74,6 @@ pipeline {
             //    Please investigate.
             //    """
             //)
-        }
+        //}
     }
 }
