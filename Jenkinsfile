@@ -42,6 +42,12 @@ pipeline {
     }
 
     post {
+		success {
+			echo '✅ Build succeeded (email disabled)'
+		}
+		failure {
+			echo '❌ Build failed (email disabled)'
+		}
         //success {
             //emailext(
             //    to: "${env.EMAIL_RECIPIENTS}",
