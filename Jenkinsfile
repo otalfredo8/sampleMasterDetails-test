@@ -15,6 +15,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo '🔍 Verifying workspace and starting checkout...'
+				sh 'git config --global --add safe.directory /var/jenkins_home/workspace/sampleMasterDetails-test-pipeline'
                 sh 'pwd && ls -l'
                 git url: "${env.GIT_REPO}", branch: 'main'
                 sh 'echo "✅ Checkout complete"; git log -1'
