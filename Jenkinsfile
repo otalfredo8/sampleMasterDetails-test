@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        CONTAINER_HOST = "unix:///run/user/1000/podman/podman.sock"
+    }
+
     stages {
         stage('Pull Cypress Image') {
             steps {
@@ -19,13 +23,13 @@ pipeline {
             }
         }
     }
-	post {
-		always {
-			echo '🧹 Cleaning up Podman containers and images...'
-			sh '''
-			podman container prune -f
-			podman image prune -f
-			'''
-		}
-	}
+    post {
+        always {
+            echo '🧹 Cleaning up Podman containers and images...'
+            sh '''
+            podman container prune -f
+            podman image prune -f
+            '''
+        }
+    }
 }
