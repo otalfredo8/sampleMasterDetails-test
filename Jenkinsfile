@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Pull Cypress Image') {
             steps {
-                sh 'podman pull cypress/included:14.3.1'
+                sh 'podman pull docker.io/cypress/included:14.3.1'
             }
         }
         stage('Run Cypress Tests') {
