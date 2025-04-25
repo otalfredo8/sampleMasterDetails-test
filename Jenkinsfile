@@ -1,10 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'cypress/included:14.3.1'
-            args '-u root --entrypoint=""'
-        }
-    }
+    agent any //{
+        //docker {
+          //  image 'cypress/included:14.3.1'
+            //args '-u root --entrypoint=""'
+        //}
+    //}
 
     environment {
         GIT_REPO = 'https://github.com/otalfredo8/sampleMasterDetails-test.git'
